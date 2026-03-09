@@ -1,5 +1,5 @@
 ---
-title: 【深度研判】3CX桌面端供应链攻击样本逆向分析
+title: 3CX桌面端供应链攻击样本逆向分析
 description: “信任滥用”与“防御逃逸”
 pubDate: 2024-03-04
 lastModDate: ''

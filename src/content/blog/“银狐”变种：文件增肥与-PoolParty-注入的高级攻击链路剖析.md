@@ -1,7 +1,7 @@
 ---
 title: “银狐”变种：文件增肥与 PoolParty 注入的高级攻击链路剖析
 description: ''
-pubDate: 2025-03-31
+pubDate: 2025-06-02
 lastModDate: ''
 ogImage: true
 toc: true
@@ -113,3 +113,20 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 打开注册表键写入自启动项
 
 ![image-20260308222901397](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626228.png)
+
+## 附录
+
+### 银狐木马 MITRE ATT&CK TTPs 映射表
+
+| **战术 (Tactic)**                             | **技术编号 (ID)** | **技术名称 (Technique)**                             | **样本具体恶意行为映射**                                     |
+| --------------------------------------------- | ----------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
+| **执行 (Execution)**                          | T1053.005         | Scheduled Task/Job: Scheduled Task                   | 读取注册表中的路径后，调用 `RegisterScheduledTaskWithPath` 函数注册计划任务，以此触发和执行恶意载荷 。 |
+| **持久化 (Persistence)**                      | T1547.001         | Boot or Logon Autostart Execution: Registry Run Keys | 在注册表 `Software\Microsoft\Windows\CurrentVersion\Run` 路径下写入名为 `bfly` 的键值，设置白文件 `kitty.exe` 开机自启动 。 |
+| **防御规避 (Defense Evasion)**                | T1574.002         | Hijack Execution Flow: DLL Side-Loading              | 利用“白加黑”技术，分别通过白文件 `Microsoft_Xtools.exe` 和 `kitty.exe` 侧载同目录下的恶意动态库 `UnityPlayer.dll` 和 `VBoxRT.dll` 。 |
+| **防御规避 (Defense Evasion)**                | T1027.001         | Obfuscated Files or Information: Binary Padding      | 为恶意文件 `UnityPlayer.dll` 添加大量垃圾数据进行文件增肥，使其体积膨胀至 209MB，以规避杀毒软件的大文件扫描限制 。 |
+| **防御规避 (Defense Evasion)**                | T1027.002         | Obfuscated Files or Information: Software Packing    | 使用 Themida 保护壳对初始执行的白文件程序 `Microsoft_Xtools.exe` 进行加壳保护，增加静态分析难度 。 |
+| **防御规避 (Defense Evasion)**                | T1140             | Deobfuscate/Decode Files or Information              | 释放加密压缩包 `NOT-UTG-Q-1000.dat` 后，在代码中使用明文密码（如“Panzer0”）进行解密，以释放后续武器库 。 |
+| **防御规避 (Defense Evasion)**                | T1112             | Modify Registry                                      | 在用户特定的注册表路径 `HKEY_USERS\...\Software\DeepSer` 及其子键（`MyData`、`Onload1`、`OpenAi_Service`）中隐蔽存储各类恶意软件的配置信息和载荷路径 。 |
+| **发现 (Discovery)**                          | T1057             | Process Discovery                                    | 调用 `CreateToolhelp32Snapshot`、`Process32FirstW` 等 API 获取系统进程快照，遍历进程内存区域以寻找包含特定字符串 `"Ven_sign"` 的特征 。 |
+| **防御规避 / 权限提升 (Evasion / Privilege)** | T1055             | Process Injection                                    | 解码出 `PoolParty.exe`，针对 `explorer.exe` 发起高级的“PoolParty”攻击（利用 Windows 线程池机制进行隐蔽的进程注入）；后续 `VBoxRT.dll` 还会将 Shellcode 注入到系统合法的 `rundll32.exe` 中 。 |
+| **防御规避 / 权限提升 (Evasion / Privilege)** | T1055.012         | Process Injection: Process Hollowing                 | 注入到 `explorer.exe` 后，利用内存中 Dump 出的 `jli.dll` 模块启动一个新的 `explorer.exe` 傀儡进程（`CommandLine='C:\Windows\explorer.exe'`），并将恶意代码写入其中执行 。 |
