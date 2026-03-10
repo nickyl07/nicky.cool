@@ -165,13 +165,6 @@ const navHighlight = true;
 <p><strong>代码执行</strong>：VS 加载 VSPackage 时，触发 <code>BinaryFormatter</code> 对 <code>.suo</code> 文件中恶意数据的反序列化，执行 Base64 加密的 Payload 。</p>
 <p>**持久化 **：Payload 释放恶意文件至 <code>%LocalAppData%</code> 目录，并写入 <code>Registry.CurrentUser</code> 注册表实现自启动 。</p>
 <p><strong>防御规避</strong>：利用带有微软数字签名的正常程序 <code>TraceIndexer.exe</code> 侧载 (Side-loading) 恶意 <code>TTDReplay.dll</code>（白加黑） 。后续甚至涉及系统 DLL 镂空技术 。</p>
-<p><img alt="image-20260309171521677" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1119px) 1119px, 100vw"  data-astro-image="constrained" width="1119" height="739" src="/_astro/20260309182155735_ZlTLml.webp" srcset="/_astro/20260309182155735_1sBSTL.webp 640w, /_astro/20260309182155735_Z1dos6t.webp 750w, /_astro/20260309182155735_ZzdzSo.webp 828w, /_astro/20260309182155735_ZHpfrp.webp 1080w, /_astro/20260309182155735_ZlTLml.webp 1119w"></p>
-<p>File: TraceIndexer.exe
-SHA1: ae3c0a7edb6fb07900f4cb59f6da10fbdc1f0251</p>
-<p>File: TTDReplay.dll
-SHA1: f9247ea23e34160f1f9d4229d8b1448d40e2c255</p>
-<div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#dbd7caee;--1:#393a34">Process.Start(Path.Combine(text, Encoding.UTF8.GetString(Convert.FromBase64String("VHJhY2VJbmRleGVyLmV4ZQ=="))), Encoding.UTF8.GetString(Convert.FromBase64String("dHRkLnRtcA==")));</span></div></div><div class="ec-line"><div class="code">
-</div></div><div class="ec-line"><div class="code"><span style="--0:#dbd7caee;--1:#393a34">进程启动TraceIndexer.exe 参数ttd.tmp</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="Process.Start(Path.Combine(text, Encoding.UTF8.GetString(Convert.FromBase64String(&#x22;VHJhY2VJbmRleGVyLmV4ZQ==&#x22;))), Encoding.UTF8.GetString(Convert.FromBase64String(&#x22;dHRkLnRtcA==&#x22;)));进程启动TraceIndexer.exe 参数ttd.tmp"><div></div></button></div></figure></div>
 <p><strong>命令与控制 (C2)</strong>：收集系统进程信息，通过 HTTP PATCH 请求将数据回传至 Notion 工作区 。</p>
 <hr>
 <h2 id="3-关键技术细节剖析">3. 关键技术细节剖析<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 3. 关键技术细节剖析" data-pagefind-ignore="" href="#3-关键技术细节剖析">#</a></h2>
@@ -194,6 +187,13 @@ SHA1: f9247ea23e34160f1f9d4229d8b1448d40e2c255</p>
 <li>
 <p><strong>载荷释放</strong>：初始 Payload 经过解密后，确认为一个 32 位的 .NET 程序 (Microsoft Linker 11.0) 。它会在本地释放两个关键文件 。</p>
 <p><img alt="image-20260309171124719" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 472px) 472px, 100vw"  data-astro-image="constrained" width="472" height="339" src="/_astro/20260309182203822_1s3U13.webp" srcset="/_astro/20260309182203822_1s3U13.webp 472w"></p>
+<p><img alt="image-20260309171521677" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 1119px) 1119px, 100vw"  data-astro-image="constrained" width="1119" height="739" src="/_astro/20260309182155735_ZlTLml.webp" srcset="/_astro/20260309182155735_1sBSTL.webp 640w, /_astro/20260309182155735_Z1dos6t.webp 750w, /_astro/20260309182155735_ZzdzSo.webp 828w, /_astro/20260309182155735_ZHpfrp.webp 1080w, /_astro/20260309182155735_ZlTLml.webp 1119w"></p>
+<p>File: TraceIndexer.exe
+SHA1: ae3c0a7edb6fb07900f4cb59f6da10fbdc1f0251</p>
+<p>File: TTDReplay.dll
+SHA1: f9247ea23e34160f1f9d4229d8b1448d40e2c255</p>
+<div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#dbd7caee;--1:#393a34">Process.Start(Path.Combine(text, Encoding.UTF8.GetString(Convert.FromBase64String("VHJhY2VJbmRleGVyLmV4ZQ=="))), Encoding.UTF8.GetString(Convert.FromBase64String("dHRkLnRtcA==")));</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#dbd7caee;--1:#393a34">进程启动TraceIndexer.exe 参数ttd.tmp</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="Process.Start(Path.Combine(text, Encoding.UTF8.GetString(Convert.FromBase64String(&#x22;VHJhY2VJbmRleGVyLmV4ZQ==&#x22;))), Encoding.UTF8.GetString(Convert.FromBase64String(&#x22;dHRkLnRtcA==&#x22;)));进程启动TraceIndexer.exe 参数ttd.tmp"><div></div></button></div></figure></div>
 </li>
 <li>
 <p><strong>白加黑利用</strong>：</p>
