@@ -39,7 +39,7 @@ search: true
 
 这是我cissp第二章人员安全和风险管理概念的错题，帮我归结一下我有哪些知识点需要加强？将错题和知识点归纳输出成文档让我下载
 
-![image-20260227203559434](C:\Users\nok\AppData\Roaming\Typora\typora-user-images\image-20260227203559434.png)
+![image-20260227203559434](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260309203545708.png)
 
 错题解析Prompt：
 

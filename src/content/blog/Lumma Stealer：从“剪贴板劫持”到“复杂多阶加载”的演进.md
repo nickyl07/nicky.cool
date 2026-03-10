@@ -111,7 +111,7 @@ cmd.exe /c cmd < Enclosed.mpg
 - **进程扫描**：使用 `tasklist | findstr` 搜索常见的安全软件进程（如 `SophosHealth`, `bdservicehost` (BitDefender), `AvastUI`, `ekrn` (ESET)）。
 - **逻辑判断**：如果发现上述进程，脚本可能会静默退出或改变行为；若未发现，则继续设定变量 `Set CJykOoMQV=AutoIt3.exe`。
 
-#### 第二阶段：文件拼接（File Stitching）
+#### 第二阶段：文件拼接
 
 这是对抗静态扫描的关键步骤。恶意载荷并未作为一个完整文件存在，而是被切碎隐藏。脚本使用 `copy /b` 命令将多个分散的文件重新组装：
 
@@ -127,7 +127,7 @@ copy /b /y ..\Canada.cda + ..\Snowboard.cda + ... + ..\Qc.cda D
 
 **分析结论**：攻击者将一个大的恶意二进制文件（可能是最终的 AutoIt 脚本 `.a3x` 或加密的 Payload）切割成名为 `Crack`, `Wallet`, `Love` 等看似无害的小文件。只有在运行时，它们才会被拼凑成完整的武器。
 
-#### 第三阶段：白利用加载（AutoIt Loader）
+#### 第三阶段：白利用加载
 
 最终，脚本会执行以下命令：
 

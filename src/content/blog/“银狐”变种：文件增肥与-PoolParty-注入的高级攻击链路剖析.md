@@ -30,13 +30,13 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
 ## 三、 攻击链路解析
 
-### **第一阶段：突破防线与隐蔽潜伏 **
+### **突破防线与隐蔽潜伏 **
 
 - **启动与伪装：** 攻击行动从一个带有 Themida 保护壳的白文件 `Microsoft_Xtools.exe` 开始 。为了躲避安全软件的静态查杀，该程序启动后会侧载同目录下的恶意动态库 `UnityPlayer.dll` 。
 
 - **体积膨胀规避扫描：** 攻击者运用了“文件增肥”（File Padding）技术，在 `UnityPlayer.dll` 的代码尾部追加了大量垃圾数据，使其体积暴增至 209 MB 。这一策略旨在突破部分杀毒引擎对大文件扫描的体积限制，实现免杀 。
 
-### **第二阶段：武器库解包与环境部署**
+### **武器库解包与环境部署**
 
 - **释放加密武器库：** 潜伏成功后，木马会在受害者系统的 `C:\Users\用户名\AppData\Roaming\随机值\` 路径下释放一个名为 `NOT-UTG-Q-1000.dat` 的加密压缩包 。
 
@@ -46,7 +46,7 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
   ![image-20260308221951944](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626213.png)
 
-### **第三阶段：构建双重持久化网络**
+### **构建双重持久化网络**
 
 为了确保系统重启后木马依然存活，攻击者在注册表中精心构建了一个用户特定的恶意配置目录 `HKEY_USERS\...\Software\DeepSer` ：
 
@@ -68,7 +68,7 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
      ![image-20260308222243094](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626218.png)
 
-### **第四阶段：深度探测与高级注入**
+### **深度探测与高级注入**
 
 - **内存特征嗅探：** 木马创建进程快照 ，并遍历系统中的所有进程，扫描特定的内存区域，查找是否存在特定字符串 "Ven_sign" 。
 
@@ -82,9 +82,9 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
   ![image-20260308222639431](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626222.png)
 
-### **第五阶段：核心进程劫持与傀儡替换 **
+### **核心进程劫持与傀儡替换 **
 
-- **二次进程派生：** 注入到 `explorer.exe` 后，恶意代码会 Dump 出内存中的 `jli.dll` 模块 。
+- **二次进程派生：** 注入到 `explorer.exe` 后，我们能够从内存中 Dump 出 名为`jli.dll` 的恶意模块 。
 
   ![image-20260308222653895](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626223.png)
 
@@ -94,7 +94,7 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
   ![image-20260308222717164](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626224.png)
 
-### **第六阶段：第二阶段接力与持续远控 **
+### **第二阶段接力与持续远控 **
 
 一旦系统重启或通过计划任务触发，攻击的第二阶段（备用唤醒/接力链）正式启动 ：
 
