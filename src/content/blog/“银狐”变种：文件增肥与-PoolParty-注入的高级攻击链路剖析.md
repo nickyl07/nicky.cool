@@ -70,9 +70,11 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
 ### **深度探测与高级注入**
 
-- **内存特征嗅探：** 木马创建进程快照 ，并遍历系统中的所有进程，扫描特定的内存区域，查找是否存在特定字符串 "Ven_sign" 。
+- **内存特征嗅探：** 木马创建进程快照 ，并遍历系统中的所有进程，扫描特定的内存区域，查找是否存在特定字符串 "Ven_sign" 。“扫描内存查找 Ven_sign”，主要目的是为了实现无文件互斥与防重复感染。
 
   ![image-20260308222346958](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626219.png)
+
+  
 
 - **PoolParty 线程池注入：** 随后，木马加载并解密出一个名为 `static.ini` 的资源文件，解码后得到真正的攻击载荷 `PoolParty.exe` 。该模块针对系统核心进程 `explorer.exe` 发起了高级的“PoolParty”攻击 。这是一种利用 Windows 线程池机制实现极高隐蔽性的进程注入技术 。
 
@@ -84,15 +86,23 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
 ### **核心进程劫持与傀儡替换 **
 
-- **二次进程派生：** 注入到 `explorer.exe` 后，我们能够从内存中 Dump 出 名为`jli.dll` 的恶意模块 。
+- **核心进程劫持：** 注入到 `explorer.exe` 后，我们能够从内存中 Dump 出 名为`jli.dll` 的恶意模块 。
 
   ![image-20260308222653895](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626223.png)
 
-- **傀儡进程执行：** 该模块的功能是启动一个新的 `explorer.exe` 进程，并将包含恶意指令的 shellcode 代码写入该新进程中执行，彻底完成对系统核心层面的劫持 。
+- **傀儡进程执行：** 该模块的功能是拉起一个新的 `explorer.exe` 进程，造出一个空壳，把傀儡进程（包含恶意指令的 shellcode）注入其中，彻底完成对系统核心层面的劫持 。
 
   CommandLine='C:\Windows\explorer.exe'
 
   ![image-20260308222717164](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626224.png)
+  
+  在注入傀儡进程的代码逻辑中，有这样一行：
+  
+  ```
+  if (WriteProcessMemory (hProcess, v6, avenSign, 9uLL, 0LL))
+  ```
+
+说明注入后会打烙印，就会存在内存特征。
 
 ### **第二阶段接力与持续远控 **
 
@@ -106,7 +116,7 @@ SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65
 
   ![image-20260308222802496](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626226.png)
 
-- **守护进程机制：** 同时，`blackdll.dll` 负责从注册表 `OpenAi_Service` 中读取并确保 `kitty.exe` 的执行 ，形成一个完整的闭环守护机制。
+- **守护进程机制：** 为防止单点清理导致持久化链条断裂，恶意模块 blackdll.dll 运行后构建了一套动态恢复机制。它负责提取 OpenAi_Service 中隐藏的宿主路径，并死守系统的 Run 注册表键值。一旦安全人员清理了启动项，该 DLL 会立刻将其重新写入，两者形成互相依赖的守护闭环，以此对抗杀毒软件和人工的常规清理操作。
 
 ![image-20260308222828423](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260308231626227.png)
 

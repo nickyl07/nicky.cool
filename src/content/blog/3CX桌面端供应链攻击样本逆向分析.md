@@ -35,7 +35,7 @@ search: true
 
 ## 逆向分析
 
-### 第一阶段：Loader分析 (ffmpeg.dll)
+### 初始触发与加载：Loader分析 (ffmpeg.dll)
 
 安装并运行 `3CXDesktopApp.exe` 后，程序会自动加载目录下的 `ffmpeg.dll`。这本是一个用于音视频处理的开源库，但攻击者对其进行了恶意修改。
 
@@ -47,7 +47,7 @@ search: true
 
 *ffmpeg.dll 创建事件以保证单实例运行*
 
-### 第二阶段：Payload 提取 (d3dcompiler_47.dll)
+### 签名绕过加载：Payload 提取与内存执行 (d3dcompiler_47.dll)
 
 `ffmpeg.dll` 的核心任务是加载同目录下的 `d3dcompiler_47.dll`。
 
@@ -73,13 +73,21 @@ search: true
 
 ![image-20240317220536940](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260221221627957.png)
 
-**执行流程转移：** 解密完成后，代码调用 `VirtualProtect` 将该内存区域属性修改为 `PAGE_EXECUTE_READWRITE` (RWX)，随后通过 `call` 指令跳转执行，正式进入第三阶段。
+**标准的无文件落地内存加载：** 解密完成后，代码调用 `VirtualProtect` 将该内存区域属性修改为 `PAGE_EXECUTE_READWRITE` (RWX)，随后通过 `call` 指令跳转执行，正式进入下一阶段。
 
 ![image-20240317221345962](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260221221629708.png)
 
-### 第三阶段：潜伏与C2通信 (Icon隐写术)
+### 环境检测与隐蔽通信：“7天+”潜伏与C2获取 (Icon隐写术)
 
-Shellcode 运行后，首先展现出了持久化与潜伏特性。它会读取配置文件（Manifest），检查时间戳。如果未达到预设时间，它会写入当前时间并休眠 **7天**，这种设计极大地增加了沙箱检测的难度。
+Shellcode 运行后，首先展现出了持久化与潜伏特性。它会读取配置文件（Manifest），检查时间戳。如果未达到预设时间，它会写入当前时间并休眠 **7天+**，这种设计极大地增加了沙箱检测的难度。
+
+这里的“预设时间”，是一个“基础休眠 + 随机抖动”的动态时间戳。
+
+Preset Time = Current Time + 604800 + (rand() mod1800000)
+
+动态时间戳 = 当前时间 + 604800 秒（7 天）+ rand() % 1800000 秒（一个随机数）
+
+写进 `manifest` 文件里的“预设时间”，是当前时间往后推 7 天 到 28 天 之间的一个“随机未来时间点”。
 
 ![image-20240320152803816](https://image-hosting-210.oss-cn-beijing.aliyuncs.com/blog/20260221221633156.png)
 
@@ -109,7 +117,7 @@ Shellcode 运行后，首先展现出了持久化与潜伏特性。它会读取�
 
 最终解密出的C2地址如下所示，Shellcode 将连接此地址下载最终的窃密组件。
 
-### 第四阶段：窃密行为分析 (InfoStealer)
+### 最终行为：窃密行为分析 (InfoStealer)
 
 最终下发的 Payload 是一个专门的信息窃取模块。分析其字符串和API调用，可以确认其主要目标是主流浏览器的用户数据。
 
