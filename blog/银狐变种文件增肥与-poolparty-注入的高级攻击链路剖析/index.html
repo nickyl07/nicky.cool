@@ -145,114 +145,249 @@ const navHighlight = true;
 </script> <script type="module">const p=()=>{const e=navigator.userAgentData;return e?.brands?.length&&e.brands.some(d=>/Chrom(e|ium)/i.test(d.brand))?"both":"none"},f=p();document.addEventListener("astro:page-load",()=>{let e;const c=t=>{const n=t?`${location.origin}/giscus/dark.css`:`${location.origin}/giscus/light.css`,o=document.getElementById("giscus-script");if(o){o.setAttribute("data-theme",n);const s=document.querySelector("iframe.giscus-frame");s&&s instanceof HTMLIFrameElement&&s.contentWindow&&s.contentWindow.postMessage({giscus:{setConfig:{theme:n}}},"https://giscus.app")}},r=t=>{t.setAttribute("aria-label",e?"dark":"light"),t.setAttribute("aria-checked",e?"true":"false")},d=()=>{const t=document.querySelector("meta[name='theme-color']"),n=getComputedStyle(document.body).getPropertyValue("--c-bg");t?.setAttribute("content",n)},u=()=>{window.localStorage.setItem("theme",e?"dark":"light")},g=t=>{const n=t.currentTarget,o=()=>{document.documentElement.classList.toggle("dark"),e=document.documentElement.classList.contains("dark"),c(e),r(n),d(),u()};if(!(document.startViewTransition&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches)){o();return}const i=t.clientX,a=t.clientY,h=Math.hypot(Math.max(i,innerWidth-i),Math.max(a,innerHeight-a));document.startViewTransition(()=>o()).ready.then(()=>{const l=[`circle(0px at ${i}px ${a}px)`,`circle(${h}px at ${i}px ${a}px)`];document.documentElement.animate({clipPath:e?l.reverse():l},{duration:400,easing:"ease-out",fill:f,pseudoElement:e?"::view-transition-old(root)":"::view-transition-new(root)"})})},m=document.getElementById("theme-switch");m?.addEventListener("click",g),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:t})=>{e=t,document.documentElement.classList.toggle("dark",e),c(e),m&&r(m),u()})});</script><a class="op-60 no-underline hover:op-100 op-transition lt-md:hidden" href="/rss.xml" title="RSS Feed" aria-label="RSS Feed">   <div u-i-lucide-rss></div> </a> </div> <button id="nav-open-button" class="hidden lt-md:block op-60 hover:op-100 op-transition" title="Navigation" aria-label="Navigation" aria-expanded="false" aria-controls="nav-panel"> <div u-i-ri-menu-line></div> </button> <div id="nav-panel" class="hidden! z-200 fixed top-10% left-50% translate-x--50%
     overflow-y-auto flex flex-col gap-5
     w-90% max-h-80vh py-4 px-6 rounded-lg
-  bg-[var(--c-bg)] shadow-custom_0_0_10_0 text-[var(--c-text)]"> <ul> <li class="block py-3 border-b b-[var(--c-scrollbar)] leading-6"><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="/blog/" title="Blog" aria-label="Blog" aria-current="false">  <span>Blog</span></a></li><li class="block py-3 border-b b-[var(--c-scrollbar)] leading-6"><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="/projects/" title="Projects" aria-label="Projects" aria-current="false">  <span>Projects</span></a></li><li class="block py-3 border-b b-[var(--c-scrollbar)] leading-6"><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="/shorts/" title="Shorts" aria-label="Shorts" aria-current="false">  <span>Shorts</span></a></li> </ul> <div class="flex justify-center items-center gap-4"> <a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="https://github.com/nickyl07" title="Github" aria-label="Github" rel="me">  <div class="i-uil-github-alt"></div></a><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="https://x.com/noknoku07_nok" title="Twitter" aria-label="Twitter" rel="me">  <div class="i-ri-twitter-x-fill"></div></a><a class="op-60 no-underline hover:op-100 op-transition op-50!" href="/rss.xml" title="RSS Feed" aria-label="RSS Feed">   <div u-i-lucide-rss></div> </a>  </div> </div> <script type="module" src="/_astro/NavSwitch.astro_astro_type_script_index_0_lang.lh05xrMp.js"></script> </nav> </header> <!-- Main --> <main id="main" class="px-7 py-10"> <!-- Content -->  <header class="prose mx-auto mb-8"> <h1>“银狐”变种：文件增肥与 PoolParty 注入的高级攻击链路剖析</h1>   <div class="mt--6! op-50"><time datetime="2025-06-02T00:00:00.000Z">2025年6月2日</time><span> · 9 min</span></div>  </header> <article class="slide-enter-content prose mx-auto" data-pagefind-body data-pagefind-filter="collection:blog"> <script type="module" src="/_astro/TocButton.astro_astro_type_script_index_0_lang.CJR-4Jo8.js"></script><script type="module">class h extends HTMLElement{#n;#s;#i=null;#t=new Map;#o=null;#e=[];connectedCallback(){this.#c(()=>this.#l())}disconnectedCallback(){this.#f()}#l=()=>{this.#n=this.#h(this.dataset.minH),this.#s=this.#h(this.dataset.maxH);const t=this.#r("a",!1);this.#d(t);const e=this.#n&&this.#s?this.#r(this.#u(this.#n,this.#s)):this.#r(".toc-heading");this.#i=new IntersectionObserver(this.#a,{root:null,rootMargin:"0% 0% -75% 0%",threshold:0});for(const n of e)this.#i.observe(n)};#c=t=>(window.requestIdleCallback||(e=>setTimeout(e,1)))(t);#a=t=>{if(!t.length)return;let e=t[0];for(let o=1;o<t.length;o++)t[o].time>e.time&&(e=t[o]);const n=e.target;if(!n)return;const i=e.boundingClientRect.top>window.innerHeight/4?this.#g(this.#t,n):n;if(!i||i===this.#o)return;const r=this.#t.get(i)??[];if(this.#e&&this.#e.length)for(const o of this.#e)o.removeAttribute("aria-current");for(const o of r)o.setAttribute("aria-current","true"),o.scrollIntoView({behavior:"smooth",block:"center"});this.#o=i,this.#e=r};#h=t=>t?parseInt(t,10):void 0;#r=(t,e=!0)=>e?Array.from(document.querySelectorAll(t)):Array.from(this.querySelectorAll(t));#d=t=>{for(const e of t){const{hash:n}=new URL(e.href),s=decodeURIComponent(n.replace(/^#/,"")),i=document.getElementById(s);i&&(this.#t.has(i)?this.#t.get(i)?.push(e):this.#t.set(i,[e]))}};#u=(t,e,n="")=>{const s=[];for(let i=t;i<=e;i++)n?s.push(`${n} h${i}`):s.push(`h${i}`);return s.join(", ")};#g=(t,e)=>{let n=null;for(const s of t.keys()){if(s===e)return n;n=s}return null};#f=()=>{this.#i?.disconnect(),this.#i=null,this.#t.clear(),this.#o=null,this.#e=[]}}customElements.define("table-of-contents",h);</script><aside> <table-of-contents data-min-h="2" data-max-h="4"> <!-- Greater than or equal to 1128px --> <nav class="toc-desktop toc-desktop-content"> <div class="toc-desktop-anchor i-ri-menu-2-fill"></div> <ul> <li><a class="op-60 no-underline hover:op-100" href="#一-概述" aria-label="Scroll to 一、 概述">  一、 概述</a></li><li><a class="op-60 no-underline hover:op-100" href="#二-核心威胁指标-iocs" aria-label="Scroll to 二、 核心威胁指标 (IoCs)">  二、 核心威胁指标 (IoCs)</a></li><li><a class="op-60 no-underline hover:op-100" href="#三-攻击链路解析" aria-label="Scroll to 三、 攻击链路解析">  三、 攻击链路解析</a><ul><li><a class="op-60 no-underline hover:op-100" href="#突破防线与隐蔽潜伏" aria-label="Scroll to **突破防线与隐蔽潜伏 **">  **突破防线与隐蔽潜伏 **</a></li><li><a class="op-60 no-underline hover:op-100" href="#武器库解包与环境部署" aria-label="Scroll to 武器库解包与环境部署">  武器库解包与环境部署</a></li><li><a class="op-60 no-underline hover:op-100" href="#构建双重持久化网络" aria-label="Scroll to 构建双重持久化网络">  构建双重持久化网络</a></li><li><a class="op-60 no-underline hover:op-100" href="#深度探测与高级注入" aria-label="Scroll to 深度探测与高级注入">  深度探测与高级注入</a></li><li><a class="op-60 no-underline hover:op-100" href="#核心进程劫持与傀儡替换" aria-label="Scroll to **核心进程劫持与傀儡替换 **">  **核心进程劫持与傀儡替换 **</a></li><li><a class="op-60 no-underline hover:op-100" href="#第二阶段接力与持续远控" aria-label="Scroll to **第二阶段接力与持续远控 **">  **第二阶段接力与持续远控 **</a></li></ul></li><li><a class="op-60 no-underline hover:op-100" href="#附录" aria-label="Scroll to 附录">  附录</a><ul><li><a class="op-60 no-underline hover:op-100" href="#银狐木马-mitre-attck-ttps-映射表" aria-label="Scroll to 银狐木马 MITRE ATT&#38;CK TTPs 映射表">  银狐木马 MITRE ATT&amp;CK TTPs 映射表</a></li></ul></li>  </ul> </nav> <!-- less than 1128px --> <button id="toc-open-button" class="z-50 fixed right-5 bottom-18
+  bg-[var(--c-bg)] shadow-custom_0_0_10_0 text-[var(--c-text)]"> <ul> <li class="block py-3 border-b b-[var(--c-scrollbar)] leading-6"><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="/blog/" title="Blog" aria-label="Blog" aria-current="false">  <span>Blog</span></a></li><li class="block py-3 border-b b-[var(--c-scrollbar)] leading-6"><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="/projects/" title="Projects" aria-label="Projects" aria-current="false">  <span>Projects</span></a></li><li class="block py-3 border-b b-[var(--c-scrollbar)] leading-6"><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="/shorts/" title="Shorts" aria-label="Shorts" aria-current="false">  <span>Shorts</span></a></li> </ul> <div class="flex justify-center items-center gap-4"> <a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="https://github.com/nickyl07" title="Github" aria-label="Github" rel="me">  <div class="i-uil-github-alt"></div></a><a class="op-60 no-underline hover:op-100 block op-50! op-transition" href="https://x.com/noknoku07_nok" title="Twitter" aria-label="Twitter" rel="me">  <div class="i-ri-twitter-x-fill"></div></a><a class="op-60 no-underline hover:op-100 op-transition op-50!" href="/rss.xml" title="RSS Feed" aria-label="RSS Feed">   <div u-i-lucide-rss></div> </a>  </div> </div> <script type="module" src="/_astro/NavSwitch.astro_astro_type_script_index_0_lang.lh05xrMp.js"></script> </nav> </header> <!-- Main --> <main id="main" class="px-7 py-10"> <!-- Content -->  <header class="prose mx-auto mb-8"> <h1>“银狐”变种：文件增肥与 PoolParty 注入的高级攻击链路剖析</h1>   <div class="mt--6! op-50"><time datetime="2025-06-02T00:00:00.000Z">2025年6月2日</time><span> · 10 min</span></div>  </header> <article class="slide-enter-content prose mx-auto" data-pagefind-body data-pagefind-filter="collection:blog"> <script type="module" src="/_astro/TocButton.astro_astro_type_script_index_0_lang.CJR-4Jo8.js"></script><script type="module">class h extends HTMLElement{#n;#s;#i=null;#t=new Map;#o=null;#e=[];connectedCallback(){this.#c(()=>this.#l())}disconnectedCallback(){this.#f()}#l=()=>{this.#n=this.#h(this.dataset.minH),this.#s=this.#h(this.dataset.maxH);const t=this.#r("a",!1);this.#d(t);const e=this.#n&&this.#s?this.#r(this.#u(this.#n,this.#s)):this.#r(".toc-heading");this.#i=new IntersectionObserver(this.#a,{root:null,rootMargin:"0% 0% -75% 0%",threshold:0});for(const n of e)this.#i.observe(n)};#c=t=>(window.requestIdleCallback||(e=>setTimeout(e,1)))(t);#a=t=>{if(!t.length)return;let e=t[0];for(let o=1;o<t.length;o++)t[o].time>e.time&&(e=t[o]);const n=e.target;if(!n)return;const i=e.boundingClientRect.top>window.innerHeight/4?this.#g(this.#t,n):n;if(!i||i===this.#o)return;const r=this.#t.get(i)??[];if(this.#e&&this.#e.length)for(const o of this.#e)o.removeAttribute("aria-current");for(const o of r)o.setAttribute("aria-current","true"),o.scrollIntoView({behavior:"smooth",block:"center"});this.#o=i,this.#e=r};#h=t=>t?parseInt(t,10):void 0;#r=(t,e=!0)=>e?Array.from(document.querySelectorAll(t)):Array.from(this.querySelectorAll(t));#d=t=>{for(const e of t){const{hash:n}=new URL(e.href),s=decodeURIComponent(n.replace(/^#/,"")),i=document.getElementById(s);i&&(this.#t.has(i)?this.#t.get(i)?.push(e):this.#t.set(i,[e]))}};#u=(t,e,n="")=>{const s=[];for(let i=t;i<=e;i++)n?s.push(`${n} h${i}`):s.push(`h${i}`);return s.join(", ")};#g=(t,e)=>{let n=null;for(const s of t.keys()){if(s===e)return n;n=s}return null};#f=()=>{this.#i?.disconnect(),this.#i=null,this.#t.clear(),this.#o=null,this.#e=[]}}customElements.define("table-of-contents",h);</script><aside> <table-of-contents data-min-h="2" data-max-h="4"> <!-- Greater than or equal to 1128px --> <nav class="toc-desktop toc-desktop-content"> <div class="toc-desktop-anchor i-ri-menu-2-fill"></div> <ul> <li><a class="op-60 no-underline hover:op-100" href="#一-概述" aria-label="Scroll to 一、 概述">  一、 概述</a></li><li><a class="op-60 no-underline hover:op-100" href="#二样本信息" aria-label="Scroll to 二、样本信息">  二、样本信息</a><ul><li><a class="op-60 no-underline hover:op-100" href="#21-文件-ioc" aria-label="Scroll to 2.1 文件 IOC">  2.1 文件 IOC</a></li><li><a class="op-60 no-underline hover:op-100" href="#22-主机侧-ioc" aria-label="Scroll to 2.2 主机侧 IOC">  2.2 主机侧 IOC</a></li></ul></li><li><a class="op-60 no-underline hover:op-100" href="#三攻击链" aria-label="Scroll to 三、攻击链">  三、攻击链</a></li><li><a class="op-60 no-underline hover:op-100" href="#四分阶段分析" aria-label="Scroll to 四、分阶段分析">  四、分阶段分析</a><ul><li><a class="op-60 no-underline hover:op-100" href="#41-第一阶段白文件侧载与文件增肥" aria-label="Scroll to 4.1 第一阶段：白文件侧载与文件增肥">  4.1 第一阶段：白文件侧载与文件增肥</a></li><li><a class="op-60 no-underline hover:op-100" href="#42-武器库解包" aria-label="Scroll to 4.2 武器库解包">  4.2 武器库解包</a></li><li><a class="op-60 no-underline hover:op-100" href="#43-注册表配置与双重持久化网络" aria-label="Scroll to 4.3 注册表配置与双重持久化网络">  4.3 注册表配置与双重持久化网络</a></li><li><a class="op-60 no-underline hover:op-100" href="#44-内存特征嗅探ven_sign互斥--标记--防重复执行" aria-label="Scroll to 4.4 内存特征嗅探Ven_sign：互斥 / 标记 / 防重复执行">  4.4 内存特征嗅探Ven_sign：互斥 / 标记 / 防重复执行</a></li><li><a class="op-60 no-underline hover:op-100" href="#45-poolparty-线程池注入" aria-label="Scroll to 4.5 PoolParty 线程池注入">  4.5 PoolParty 线程池注入</a></li><li><a class="op-60 no-underline hover:op-100" href="#46-jlidll线程劫持与傀儡-explorerexe" aria-label="Scroll to 4.6 jli.dll线程劫持与傀儡 explorer.exe">  4.6 jli.dll线程劫持与傀儡 explorer.exe</a></li><li><a class="op-60 no-underline hover:op-100" href="#47-第二阶段kittyexe-侧载-vboxrtdll" aria-label="Scroll to 4.7 第二阶段：kitty.exe 侧载 VBoxRT.dll">  4.7 第二阶段：kitty.exe 侧载 VBoxRT.dll</a></li></ul></li><li><a class="op-60 no-underline hover:op-100" href="#mitre-attck-映射" aria-label="Scroll to MITRE ATT&#38;CK 映射">  MITRE ATT&amp;CK 映射</a></li><li><a class="op-60 no-underline hover:op-100" href="#参考来源" aria-label="Scroll to 参考来源">  参考来源</a></li>  </ul> </nav> <!-- less than 1128px --> <button id="toc-open-button" class="z-50 fixed right-5 bottom-18
     w-10 h-10 rounded-full
     op-0 bg-#8883 dark:bg-#8886 pointer-events-none op-transition
     lt-lgp:op-50 lt-lgp:pointer-events-auto
     hover:op-100 print:hidden" title="Open table of contents"> <div u-i-lucide-table-of-contents class="text-gray-700 dark:text-gray-200"></div> </button> <nav id="toc-panel" class="hidden! z-200 fixed top-10% left-50% translate-x--50%
     overflow-y-auto flex flex-col
     w-90% max-h-80vh py-4 px-6 rounded-lg
-    bg-[var(--c-bg)] shadow-custom_0_0_10_0 text-[var(--c-text)]"> <div class="pb-1 b-b b-[var(--c-text)]">Table of Contents</div> <ul class="text-sm"> <li><a class="op-60 no-underline hover:op-100" href="#一-概述" aria-label="Scroll to 一、 概述">  一、 概述</a></li><li><a class="op-60 no-underline hover:op-100" href="#二-核心威胁指标-iocs" aria-label="Scroll to 二、 核心威胁指标 (IoCs)">  二、 核心威胁指标 (IoCs)</a></li><li><a class="op-60 no-underline hover:op-100" href="#三-攻击链路解析" aria-label="Scroll to 三、 攻击链路解析">  三、 攻击链路解析</a><ul><li><a class="op-60 no-underline hover:op-100" href="#突破防线与隐蔽潜伏" aria-label="Scroll to **突破防线与隐蔽潜伏 **">  **突破防线与隐蔽潜伏 **</a></li><li><a class="op-60 no-underline hover:op-100" href="#武器库解包与环境部署" aria-label="Scroll to 武器库解包与环境部署">  武器库解包与环境部署</a></li><li><a class="op-60 no-underline hover:op-100" href="#构建双重持久化网络" aria-label="Scroll to 构建双重持久化网络">  构建双重持久化网络</a></li><li><a class="op-60 no-underline hover:op-100" href="#深度探测与高级注入" aria-label="Scroll to 深度探测与高级注入">  深度探测与高级注入</a></li><li><a class="op-60 no-underline hover:op-100" href="#核心进程劫持与傀儡替换" aria-label="Scroll to **核心进程劫持与傀儡替换 **">  **核心进程劫持与傀儡替换 **</a></li><li><a class="op-60 no-underline hover:op-100" href="#第二阶段接力与持续远控" aria-label="Scroll to **第二阶段接力与持续远控 **">  **第二阶段接力与持续远控 **</a></li></ul></li><li><a class="op-60 no-underline hover:op-100" href="#附录" aria-label="Scroll to 附录">  附录</a><ul><li><a class="op-60 no-underline hover:op-100" href="#银狐木马-mitre-attck-ttps-映射表" aria-label="Scroll to 银狐木马 MITRE ATT&#38;CK TTPs 映射表">  银狐木马 MITRE ATT&amp;CK TTPs 映射表</a></li></ul></li> </ul> </nav>  </table-of-contents> </aside> <h2 id="一-概述">一、 概述<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 一、 概述" data-pagefind-ignore="" href="#一-概述">#</a></h2>
+    bg-[var(--c-bg)] shadow-custom_0_0_10_0 text-[var(--c-text)]"> <div class="pb-1 b-b b-[var(--c-text)]">Table of Contents</div> <ul class="text-sm"> <li><a class="op-60 no-underline hover:op-100" href="#一-概述" aria-label="Scroll to 一、 概述">  一、 概述</a></li><li><a class="op-60 no-underline hover:op-100" href="#二样本信息" aria-label="Scroll to 二、样本信息">  二、样本信息</a><ul><li><a class="op-60 no-underline hover:op-100" href="#21-文件-ioc" aria-label="Scroll to 2.1 文件 IOC">  2.1 文件 IOC</a></li><li><a class="op-60 no-underline hover:op-100" href="#22-主机侧-ioc" aria-label="Scroll to 2.2 主机侧 IOC">  2.2 主机侧 IOC</a></li></ul></li><li><a class="op-60 no-underline hover:op-100" href="#三攻击链" aria-label="Scroll to 三、攻击链">  三、攻击链</a></li><li><a class="op-60 no-underline hover:op-100" href="#四分阶段分析" aria-label="Scroll to 四、分阶段分析">  四、分阶段分析</a><ul><li><a class="op-60 no-underline hover:op-100" href="#41-第一阶段白文件侧载与文件增肥" aria-label="Scroll to 4.1 第一阶段：白文件侧载与文件增肥">  4.1 第一阶段：白文件侧载与文件增肥</a></li><li><a class="op-60 no-underline hover:op-100" href="#42-武器库解包" aria-label="Scroll to 4.2 武器库解包">  4.2 武器库解包</a></li><li><a class="op-60 no-underline hover:op-100" href="#43-注册表配置与双重持久化网络" aria-label="Scroll to 4.3 注册表配置与双重持久化网络">  4.3 注册表配置与双重持久化网络</a></li><li><a class="op-60 no-underline hover:op-100" href="#44-内存特征嗅探ven_sign互斥--标记--防重复执行" aria-label="Scroll to 4.4 内存特征嗅探Ven_sign：互斥 / 标记 / 防重复执行">  4.4 内存特征嗅探Ven_sign：互斥 / 标记 / 防重复执行</a></li><li><a class="op-60 no-underline hover:op-100" href="#45-poolparty-线程池注入" aria-label="Scroll to 4.5 PoolParty 线程池注入">  4.5 PoolParty 线程池注入</a></li><li><a class="op-60 no-underline hover:op-100" href="#46-jlidll线程劫持与傀儡-explorerexe" aria-label="Scroll to 4.6 jli.dll线程劫持与傀儡 explorer.exe">  4.6 jli.dll线程劫持与傀儡 explorer.exe</a></li><li><a class="op-60 no-underline hover:op-100" href="#47-第二阶段kittyexe-侧载-vboxrtdll" aria-label="Scroll to 4.7 第二阶段：kitty.exe 侧载 VBoxRT.dll">  4.7 第二阶段：kitty.exe 侧载 VBoxRT.dll</a></li></ul></li><li><a class="op-60 no-underline hover:op-100" href="#mitre-attck-映射" aria-label="Scroll to MITRE ATT&#38;CK 映射">  MITRE ATT&amp;CK 映射</a></li><li><a class="op-60 no-underline hover:op-100" href="#参考来源" aria-label="Scroll to 参考来源">  参考来源</a></li> </ul> </nav>  </table-of-contents> </aside> <h2 id="一-概述">一、 概述<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 一、 概述" data-pagefind-ignore="" href="#一-概述">#</a></h2>
 <p>本报告针对近期捕获的一例“银狐”木马最新变种进行了深度分析 。在此次攻击活动中，攻击者展现了极高的防御规避意识，不仅利用 Themida 加壳与“文件增肥”（File Padding）技术对抗静态查杀，还广泛采用了“白加黑”侧载机制 。在载荷执行阶段，该变种运用了罕见且高级的 PoolParty 进程注入技术，通过劫持 Windows 线程池隐蔽地将恶意代码注入系统核心进程，最终实现对目标系统的深度控制与持久化 。</p>
-<h2 id="二-核心威胁指标-iocs">二、 核心威胁指标 (IoCs)<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 二、 核心威胁指标 (IoCs)" data-pagefind-ignore="" href="#二-核心威胁指标-iocs">#</a></h2>
-<p><strong>UnityPlayer.dll</strong> (第一阶段核心组件，209 MB) ：</p>
-<p>SHA1: c00000f0feedc9528f96f6624f562459c037daaf</p>
-<p><strong>VBoxRT.dll</strong> (第二阶段恶意载荷，232 MB) ：</p>
-<p>SHA1: ceed164619b274410c1bac27b5f4d9b88fb8c4bf</p>
-<p><strong>blackdll.dll</strong>：</p>
-<p>SHA1: b3caf1a617681c0df30cae15f868ba2c42309f65</p>
-<h2 id="三-攻击链路解析">三、 攻击链路解析<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 三、 攻击链路解析" data-pagefind-ignore="" href="#三-攻击链路解析">#</a></h2>
-<h3 id="突破防线与隐蔽潜伏">**突破防线与隐蔽潜伏 **<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to **突破防线与隐蔽潜伏 **" data-pagefind-ignore="" href="#突破防线与隐蔽潜伏">#</a></h3>
-<ul>
-<li>
-<p><strong>启动与伪装：</strong> 攻击行动从一个带有 Themida 保护壳的白文件 <code>Microsoft_Xtools.exe</code> 开始 。为了躲避安全软件的静态查杀，该程序启动后会侧载同目录下的恶意动态库 <code>UnityPlayer.dll</code> 。</p>
-</li>
-<li>
-<p><strong>体积膨胀规避扫描：</strong> 攻击者运用了“文件增肥”（File Padding）技术，在 <code>UnityPlayer.dll</code> 的代码尾部追加了大量垃圾数据，使其体积暴增至 209 MB 。这一策略旨在突破部分杀毒引擎对大文件扫描的体积限制，实现免杀 。</p>
-</li>
-</ul>
-<h3 id="武器库解包与环境部署"><strong>武器库解包与环境部署</strong><a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 武器库解包与环境部署" data-pagefind-ignore="" href="#武器库解包与环境部署">#</a></h3>
-<ul>
-<li>
-<p><strong>释放加密武器库：</strong> 潜伏成功后，木马会在受害者系统的 <code>C:\Users\用户名\AppData\Roaming\随机值\</code> 路径下释放一个名为 <code>NOT-UTG-Q-1000.dat</code> 的加密压缩包 。</p>
-<p><img alt="image-20260308221935248" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 673px) 673px, 100vw"  data-astro-image="constrained" width="673" height="89" src="/_astro/20260308231626212_Z5AirD.webp" srcset="/_astro/20260308231626212_1R1b2f.webp 640w, /_astro/20260308231626212_Z5AirD.webp 673w"></p>
-</li>
-<li>
-<p><strong>明文解密获取组件：</strong> 随后，木马直接使用内置的明文密码（如“Panzer0”）对该压缩包进行解密 。解压后，释出第二阶段攻击所需的核心组件，包括白文件 <code>kitty.exe</code>，以及 <code>VBoxRT.dll</code> 和 <code>blackdll.dll</code> 等恶意扩展模块 。</p>
-<p><img alt="image-20260308221951944" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 538px) 538px, 100vw"  data-astro-image="constrained" width="538" height="211" src="/_astro/20260308231626213_ZlgI0q.webp" srcset="/_astro/20260308231626213_ZlgI0q.webp 538w"></p>
-</li>
-</ul>
-<h3 id="构建双重持久化网络"><strong>构建双重持久化网络</strong><a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 构建双重持久化网络" data-pagefind-ignore="" href="#构建双重持久化网络">#</a></h3>
-<p>为了确保系统重启后木马依然存活，攻击者在注册表中精心构建了一个用户特定的恶意配置目录 <code>HKEY_USERS\...\Software\DeepSer</code> ：</p>
-<ul>
-<li>
-<p><strong>隐蔽存储路径：</strong> 木马将关键文件的路径分散隐藏在注册表的不同键值中：<code>MyData</code> 存储载荷数据 <code>\\view.res</code> ；<code>OpenAi_Service</code> 存储白文件 <code>kitty.exe</code> 的路径 ；<code>Onload1</code> 则存储了初始程序 <code>Microsoft_Xtools.exe</code> 的路径 。</p>
-<p><img alt="image-20260308222204231" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 697px) 697px, 100vw"  data-astro-image="constrained" width="697" height="86" src="/_astro/20260308231626214_Z1arVK9.webp" srcset="/_astro/20260308231626214_Z28IW3B.webp 640w, /_astro/20260308231626214_Z1arVK9.webp 697w"></p>
-</li>
-<li>
-<p><strong>双重触发机制：</strong></p>
+<h2 id="二样本信息">二、样本信息<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 二、样本信息" data-pagefind-ignore="" href="#二样本信息">#</a></h2>
+<h3 id="21-文件-ioc">2.1 文件 IOC<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 2.1 文件 IOC" data-pagefind-ignore="" href="#21-文件-ioc">#</a></h3>
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>文件名</th><th>SHA1</th><th>说明</th></tr></thead><tbody><tr><td><code>UnityPlayer.dll</code></td><td><code>c00000f0feedc9528f96f6624f562459c037daaf</code></td><td>第一阶段核心组件，体积约 209 MB，疑似通过文件增肥规避大文件扫描</td></tr><tr><td><code>VBoxRT.dll</code></td><td><code>ceed164619b274410c1bac27b5f4d9b88fb8c4bf</code></td><td>第二阶段恶意载荷，由 <code>kitty.exe</code> 侧载</td></tr><tr><td><code>blackdll.dll</code></td><td><code>b3caf1a617681c0df30cae15f868ba2c42309f65</code></td><td>守护 / 修复持久化链相关模块</td></tr><tr><td><code>Microsoft_Xtools.exe</code></td><td></td><td>第一阶段白文件 / 诱饵宿主，Themida 加壳，侧载 <code>UnityPlayer.dll</code></td></tr><tr><td><code>kitty.exe</code></td><td></td><td>第二阶段白文件 / 宿主程序，侧载 <code>VBoxRT.dll</code></td></tr><tr><td><code>NOT-UTG-Q-1000.dat</code></td><td></td><td>加密压缩包，使用 <code>Panzer0</code> 解密后释放后续组件</td></tr><tr><td><code>static.ini</code></td><td></td><td>被解密为 <code>PoolParty.exe</code> 的资源或载荷容器</td></tr><tr><td><code>PoolParty.exe</code></td><td></td><td>线程池注入模块，目标为 <code>explorer.exe</code></td></tr><tr><td><code>jli.dll</code></td><td></td><td>从被注入进程内存中 Dump 出的后续模块</td></tr></tbody></table></div>
+<h3 id="22-主机侧-ioc">2.2 主机侧 IOC<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 2.2 主机侧 IOC" data-pagefind-ignore="" href="#22-主机侧-ioc">#</a></h3>
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类型</th><th>IOC / 线索</th><th>说明</th></tr></thead><tbody><tr><td>注册表</td><td><code>HKEY_USERS\...\Software\DeepSer</code></td><td>恶意配置主键，公开相似样本也大量出现</td></tr><tr><td>注册表值</td><td><code>MyData</code></td><td>存储 Shellcode、加密载荷或载荷路径，例如 <code>\view.res</code></td></tr><tr><td>注册表值</td><td><code>OpenAi_Service</code></td><td>存储宿主或白文件路径；这里是攻击者自定义键名</td></tr><tr><td>注册表值</td><td><code>Onload1</code></td><td>存储初始程序 <code>Microsoft_Xtools.exe</code> 路径</td></tr><tr><td>注册表启动项</td><td><code>Software\Microsoft\Windows\CurrentVersion\Run\bfly</code></td><td>指向 <code>kitty.exe</code>，用于登录自启动</td></tr><tr><td>文件路径</td><td><code>%APPDATA%\Roaming\&#x3C;随机值>\NOT-UTG-Q-1000.dat</code></td><td>加密压缩包落地位置</td></tr><tr><td>文件 / 资源</td><td><code>\view.res</code></td><td><code>MyData</code> 指向的载荷数据或资源文件</td></tr><tr><td>内存标记</td><td><code>Ven_sign</code> / <code>avenSign</code></td><td>注入后写入目标进程的标记，疑似用于防重复感染或执行状态识别</td></tr><tr><td>目标进程</td><td><code>explorer.exe</code></td><td>线程池注入和后续傀儡进程链的主要目标</td></tr><tr><td>目标进程</td><td><code>rundll32.exe</code></td><td>第二阶段 <code>VBoxRT.dll</code> 从注册表读取 Shellcode 后注入的宿主进程</td></tr></tbody></table></div>
+<h2 id="三攻击链">三、攻击链<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 三、攻击链" data-pagefind-ignore="" href="#三攻击链">#</a></h2>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.p1vpi.css"><script type="module" src="/_astro/ec.p1z7b.js"></script><figure class="frame"><figcaption class="header"></figcaption><pre data-language="mermaid"><code><div class="ec-line"><div class="code"><span style="--0:#DBD7CAEE;--1:#393A34">flowchart TD</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">A["诱饵/白文件 Microsoft_Xtools.exe"] --> B["Themida 加壳与 DLL 侧载"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">B --> C["加载 UnityPlayer.dll"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">C --> D["文件增肥规避静态扫描"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">D --> E["释放 NOT-UTG-Q-1000.dat"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">E --> F["使用 Panzer0 解包后续组件"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">F --> G["释放 kitty.exe / VBoxRT.dll / blackdll.dll 等组件"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">G --> H["写入 DeepSer 注册表配置"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">H --> I["Run 启动项 bfly + 计划任务触发"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">I --> J["扫描进程内存中的 Ven_sign 标记"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">J --> K["解密 static.ini 得到 PoolParty.exe"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">K --> L["注入 explorer.exe"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">L --> M["Dump / 加载 jli.dll"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">M --> N["创建傀儡 explorer.exe 并写入 Shellcode"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">I --> O["重启/触发后 kitty.exe 侧载 VBoxRT.dll"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">O --> P["读取 DeepSer\\MyData 中的 Shellcode"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">P --> Q["注入 rundll32.exe 并进入远控阶段"]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#DBD7CAEE;--1:#393A34">    </span></span><span style="--0:#DBD7CAEE;--1:#393A34">G --> R["blackdll.dll 守护 Run 键并修复持久化"]</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="flowchart TD    A[&#x22;诱饵/白文件 Microsoft_Xtools.exe&#x22;] --> B[&#x22;Themida 加壳与 DLL 侧载&#x22;]    B --> C[&#x22;加载 UnityPlayer.dll&#x22;]    C --> D[&#x22;文件增肥规避静态扫描&#x22;]    D --> E[&#x22;释放 NOT-UTG-Q-1000.dat&#x22;]    E --> F[&#x22;使用 Panzer0 解包后续组件&#x22;]    F --> G[&#x22;释放 kitty.exe / VBoxRT.dll / blackdll.dll 等组件&#x22;]    G --> H[&#x22;写入 DeepSer 注册表配置&#x22;]    H --> I[&#x22;Run 启动项 bfly + 计划任务触发&#x22;]    I --> J[&#x22;扫描进程内存中的 Ven_sign 标记&#x22;]    J --> K[&#x22;解密 static.ini 得到 PoolParty.exe&#x22;]    K --> L[&#x22;注入 explorer.exe&#x22;]    L --> M[&#x22;Dump / 加载 jli.dll&#x22;]    M --> N[&#x22;创建傀儡 explorer.exe 并写入 Shellcode&#x22;]    I --> O[&#x22;重启/触发后 kitty.exe 侧载 VBoxRT.dll&#x22;]    O --> P[&#x22;读取 DeepSer\\MyData 中的 Shellcode&#x22;]    P --> Q[&#x22;注入 rundll32.exe 并进入远控阶段&#x22;]    G --> R[&#x22;blackdll.dll 守护 Run 键并修复持久化&#x22;]"><div></div></button></div></figure></div>
+<h2 id="四分阶段分析">四、分阶段分析<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 四、分阶段分析" data-pagefind-ignore="" href="#四分阶段分析">#</a></h2>
+<h3 id="41-第一阶段白文件侧载与文件增肥">4.1 第一阶段：白文件侧载与文件增肥<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 4.1 第一阶段：白文件侧载与文件增肥" data-pagefind-ignore="" href="#41-第一阶段白文件侧载与文件增肥">#</a></h3>
+<p>攻击链从一个带有 Themida 保护壳的白文件 <code>Microsoft_Xtools.exe</code> 开始 ，该程序启动后侧载同目录下的恶意动态库<code>UnityPlayer.dll</code>。</p>
+<p>攻击者运用了“文件增肥”（File Padding）技术，在 <code>UnityPlayer.dll</code> 的代码尾部追加大量无效数据，使其体积暴增至 209 MB 。这一策略旨在规避了部分安全产品的大文件扫描阈值或拖慢静态分析。</p>
+<h3 id="42-武器库解包">4.2 武器库解包<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 4.2 武器库解包" data-pagefind-ignore="" href="#42-武器库解包">#</a></h3>
+<p><code>UnityPlayer.dll</code> 运行后，在 <code>%APPDATA%\Roaming\&#x3C;随机值>\</code> 下释放加密压缩包 <code>NOT-UTG-Q-1000.dat</code>，并使用内置明文密码 <code>Panzer0</code> 解包。</p>
+<p><img alt="文件增肥与侧载" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 673px) 673px, 100vw"  data-astro-image="constrained" width="673" height="89" src="/_astro/20260308231626212_Z5AirD.webp" srcset="/_astro/20260308231626212_1R1b2f.webp 640w, /_astro/20260308231626212_Z5AirD.webp 673w"></p>
+<p>解包后释放的核心组件包括：</p>
+<p><img alt="解包组件" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 538px) 538px, 100vw"  data-astro-image="constrained" width="538" height="211" src="/_astro/20260308231626213_ZlgI0q.webp" srcset="/_astro/20260308231626213_ZlgI0q.webp 538w"></p>
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>组件</th><th>作用研判</th></tr></thead><tbody><tr><td><code>kitty.exe</code></td><td>第二阶段宿主 / 白文件，用于侧载 <code>VBoxRT.dll</code></td></tr><tr><td><code>VBoxRT.dll</code></td><td>第二阶段恶意 DLL，读取注册表 Shellcode 并注入 <code>rundll32.exe</code></td></tr><tr><td><code>blackdll.dll</code></td><td>守护模块，负责检查并恢复启动项</td></tr><tr><td><code>static.ini</code></td><td>加密或编码的载荷容器，解密后得到 <code>PoolParty.exe</code></td></tr><tr><td><code>PoolParty.exe</code></td><td>负责线程池注入的模块</td></tr></tbody></table></div>
+<h3 id="43-注册表配置与双重持久化网络">4.3 注册表配置与双重持久化网络<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 4.3 注册表配置与双重持久化网络" data-pagefind-ignore="" href="#43-注册表配置与双重持久化网络">#</a></h3>
+<p>样本会创建或使用 <code>HKEY_USERS\...\Software\DeepSer</code>，并写入多项配置。</p>
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>键值名</th><th>原文观察</th><th>研判</th></tr></thead><tbody><tr><td><code>MyData</code></td><td>存储 <code>\view.res</code> 或载荷数据</td><td>更准确地说是 Shellcode / 加密载荷缓存区</td></tr><tr><td><code>OpenAi_Service</code></td><td>存储 <code>kitty.exe</code> 路径</td><td>宿主路径缓存，<code>kitty.exe</code> 的路径</td></tr><tr><td><code>Onload1</code></td><td>存储 <code>Microsoft_Xtools.exe</code> 路径</td><td>初始链路路径缓存，用于恢复或二次触发</td></tr></tbody></table></div>
+<p><img alt="DeepSer 注册表" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 697px) 697px, 100vw"  data-astro-image="constrained" width="697" height="86" src="/_astro/20260308231626214_Z1arVK9.webp" srcset="/_astro/20260308231626214_Z28IW3B.webp 640w, /_astro/20260308231626214_Z1arVK9.webp 697w"></p>
+<p>双触发持久化：</p>
 <ol>
-<li>
-<p><strong>计划任务：</strong> 木马读取注册表获取路径后，调用系统函数 <code>RegisterScheduledTaskWithPath</code> 隐蔽注册计划任务 。</p>
-<p><img alt="image-20260308222435808" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 581px) 581px, 100vw"  data-astro-image="constrained" width="581" height="287" src="/_astro/20260308231626215_Z165qgy.webp" srcset="/_astro/20260308231626215_Z165qgy.webp 581w"></p>
-<p><img alt="image-20260308222509564" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 626px) 626px, 100vw"  data-astro-image="constrained" width="626" height="103" src="/_astro/20260308231626216_Z1RBQvu.webp" srcset="/_astro/20260308231626216_Z1RBQvu.webp 626w"></p>
-<p><img alt="image-20260308222517179" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 518px) 518px, 100vw"  data-astro-image="constrained" width="518" height="71" src="/_astro/20260308231626217_B0H65.webp" srcset="/_astro/20260308231626217_B0H65.webp 518w"></p>
-</li>
-<li>
-<p><strong>启动项篡改：</strong> 设置白文件 <code>kitty.exe</code> 的自启，将其路径写入系统的 <code>Run</code> 注册表项中（命名为 <code>bfly</code>） 。恶意模块 <code>blackdll.dll</code> 也会辅助打开该注册表项并写入自启动项以确保其执行 。</p>
-<p><img alt="image-20260308222243094" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 604px) 604px, 100vw"  data-astro-image="constrained" width="604" height="115" src="/_astro/20260308231626218_Z1lvzpC.webp" srcset="/_astro/20260308231626218_Z1lvzpC.webp 604w"></p>
-</li>
+<li>计划任务：读取注册表中的路径后，调用 <code>RegisterScheduledTaskWithPath</code> 或相关计划任务逻辑注册任务。</li>
 </ol>
-</li>
-</ul>
-<h3 id="深度探测与高级注入"><strong>深度探测与高级注入</strong><a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 深度探测与高级注入" data-pagefind-ignore="" href="#深度探测与高级注入">#</a></h3>
+<p><img alt="计划任务注册" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 581px) 581px, 100vw"  data-astro-image="constrained" width="581" height="287" src="/_astro/20260308231626215_Z165qgy.webp" srcset="/_astro/20260308231626215_Z165qgy.webp 581w"></p>
+<p><img alt="计划任务信息" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 626px) 626px, 100vw"  data-astro-image="constrained" width="626" height="103" src="/_astro/20260308231626216_Z1RBQvu.webp" srcset="/_astro/20260308231626216_Z1RBQvu.webp 626w"></p>
+<p><img alt="计划任务触发" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 518px) 518px, 100vw"  data-astro-image="constrained" width="518" height="71" src="/_astro/20260308231626217_B0H65.webp" srcset="/_astro/20260308231626217_B0H65.webp 518w"></p>
+<ol start="2">
+<li>Run 启动项：将 <code>kitty.exe</code> 写入 <code>Software\Microsoft\Windows\CurrentVersion\Run</code>，键名为 <code>bfly</code>。</li>
+</ol>
+<p><img alt="Run 启动项" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 604px) 604px, 100vw"  data-astro-image="constrained" width="604" height="115" src="/_astro/20260308231626218_Z1lvzpC.webp" srcset="/_astro/20260308231626218_Z1lvzpC.webp 604w"></p>
+<h3 id="44-内存特征嗅探ven_sign互斥--标记--防重复执行">4.4 内存特征嗅探<code>Ven_sign</code>：互斥 / 标记 / 防重复执行<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 4.4 内存特征嗅探Ven_sign：互斥 / 标记 / 防重复执行" data-pagefind-ignore="" href="#44-内存特征嗅探ven_sign互斥--标记--防重复执行">#</a></h3>
+<p>样本创建进程快照并遍历进程内存，查找 <code>Ven_sign</code> 字符串。后续注入傀儡进程时，又出现：</p>
+<div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="c"><code><div class="ec-line"><div class="code"><span style="--0:#80A665;--1:#59873A">WriteProcessMemory</span><span style="--0:#666666;--1:#999999">(</span><span style="--0:#DBD7CAEE;--1:#393A34">hProcess</span><span style="--0:#666666;--1:#999999">,</span><span style="--0:#DBD7CAEE;--1:#393A34"> v6</span><span style="--0:#666666;--1:#999999">,</span><span style="--0:#DBD7CAEE;--1:#393A34"> avenSign</span><span style="--0:#666666;--1:#999999">,</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#4C9A91;--1:#2F798A">9</span><span style="--0:#CB7676;--1:#AB5959">uLL</span><span style="--0:#666666;--1:#999999">,</span><span style="--0:#DBD7CAEE;--1:#393A34"> </span><span style="--0:#4C9A91;--1:#2F798A">0</span><span style="--0:#CB7676;--1:#AB5959">LL</span><span style="--0:#666666;--1:#999999">)</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="WriteProcessMemory(hProcess, v6, avenSign, 9uLL, 0LL)"><div></div></button></div></figure></div>
+<p><code>Ven_sign</code> 是样本写入目标进程内存的执行标记，可能用于防重复感染、识别已注入进程，或判断当前链路是否已经完成。</p>
+<p><img alt="Ven_sign 扫描" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 697px) 697px, 100vw"  data-astro-image="constrained" width="697" height="355" src="/_astro/20260308231626219_Z5bN0z.webp" srcset="/_astro/20260308231626219_1tBAV6.webp 640w, /_astro/20260308231626219_Z5bN0z.webp 697w"></p>
+<h3 id="45-poolparty-线程池注入">4.5 PoolParty 线程池注入<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 4.5 PoolParty 线程池注入" data-pagefind-ignore="" href="#45-poolparty-线程池注入">#</a></h3>
+<p>样本加载并解密 <code>static.ini</code>，得到 <code>PoolParty.exe</code>，随后针对 <code>explorer.exe</code> 进行线程池注入。</p>
+<p><img alt="PoolParty 载荷" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 697px) 697px, 100vw"  data-astro-image="constrained" width="697" height="88" src="/_astro/20260308231626220_J41ty.webp" srcset="/_astro/20260308231626220_1CGcOL.webp 640w, /_astro/20260308231626220_J41ty.webp 697w"></p>
+<p><img alt="PoolParty 注入流程" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 569px) 569px, 100vw"  data-astro-image="constrained" width="569" height="333" src="/_astro/20260308231626221_Zvzt44.webp" srcset="/_astro/20260308231626221_Zvzt44.webp 569w"></p>
+<p><img alt="PoolParty 注入细节" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 494px) 494px, 100vw"  data-astro-image="constrained" width="494" height="276" src="/_astro/20260308231626222_21jnb5.webp" srcset="/_astro/20260308231626222_21jnb5.webp 494w"></p>
+<p>使用的是 PoolParty Variant 7：先定位 <code>explorer.exe</code>，复制目标进程中的 <code>IoCompletion</code> 句柄，再通过 <code>ZwSetIoCompletion</code> 投递 <code>TP_DIRECT</code> 结构触发执行。</p>
 <ul>
-<li>
-<p><strong>内存特征嗅探：</strong> 木马创建进程快照 ，并遍历系统中的所有进程，扫描特定的内存区域，查找是否存在特定字符串 “Ven_sign” 。“扫描内存查找 Ven_sign”，主要目的是为了实现无文件互斥与防重复感染。</p>
-<p><img alt="image-20260308222346958" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 697px) 697px, 100vw"  data-astro-image="constrained" width="697" height="355" src="/_astro/20260308231626219_Z5bN0z.webp" srcset="/_astro/20260308231626219_1tBAV6.webp 640w, /_astro/20260308231626219_Z5bN0z.webp 697w"></p>
-</li>
-<li>
-<p><strong>PoolParty 线程池注入：</strong> 随后，木马加载并解密出一个名为 <code>static.ini</code> 的资源文件，解码后得到真正的攻击载荷 <code>PoolParty.exe</code> 。该模块针对系统核心进程 <code>explorer.exe</code> 发起了高级的“PoolParty”攻击 。这是一种利用 Windows 线程池机制实现极高隐蔽性的进程注入技术 。</p>
-<p><img alt="image-20260308222541289" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 697px) 697px, 100vw"  data-astro-image="constrained" width="697" height="88" src="/_astro/20260308231626220_J41ty.webp" srcset="/_astro/20260308231626220_1CGcOL.webp 640w, /_astro/20260308231626220_J41ty.webp 697w"></p>
-<p><img alt="image-20260308222628362" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 569px) 569px, 100vw"  data-astro-image="constrained" width="569" height="333" src="/_astro/20260308231626221_Zvzt44.webp" srcset="/_astro/20260308231626221_Zvzt44.webp 569w"></p>
-<p><img alt="image-20260308222639431" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 494px) 494px, 100vw"  data-astro-image="constrained" width="494" height="276" src="/_astro/20260308231626222_21jnb5.webp" srcset="/_astro/20260308231626222_21jnb5.webp 494w"></p>
-</li>
+<li>调用 <code>ZwDuplicateObject</code> / <code>DuplicateHandle</code> 复制 <code>explorer.exe</code> 句柄。</li>
+<li>调用 <code>ZwQueryObject</code>，并比较对象类型名 <code>IoCompletion</code>。</li>
+<li>构造或写入 <code>TP_DIRECT</code> 风格结构。</li>
+<li>调用 <code>ZwSetIoCompletion</code> / <code>NtSetIoCompletion</code> 向目标 I/O completion queue 投递任务。</li>
 </ul>
-<h3 id="核心进程劫持与傀儡替换">**核心进程劫持与傀儡替换 **<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to **核心进程劫持与傀儡替换 **" data-pagefind-ignore="" href="#核心进程劫持与傀儡替换">#</a></h3>
-<ul>
-<li>
-<p><strong>核心进程劫持：</strong> 注入到 <code>explorer.exe</code> 后，我们能够从内存中 Dump 出 名为<code>jli.dll</code> 的恶意模块 。</p>
-<p><img alt="image-20260308222653895" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 496px) 496px, 100vw"  data-astro-image="constrained" width="496" height="279" src="/_astro/20260308231626223_Z2904tB.webp" srcset="/_astro/20260308231626223_Z2904tB.webp 496w"></p>
-</li>
-<li>
-<p><strong>傀儡进程执行：</strong> 该模块的功能是拉起一个新的 <code>explorer.exe</code> 进程，造出一个空壳，把傀儡进程（包含恶意指令的 shellcode）注入其中，彻底完成对系统核心层面的劫持 。</p>
-<p>CommandLine=‘C:\Windows\explorer.exe’</p>
-<p><img alt="image-20260308222717164" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 511px) 511px, 100vw"  data-astro-image="constrained" width="511" height="337" src="/_astro/20260308231626224_25cKrz.webp" srcset="/_astro/20260308231626224_25cKrz.webp 511w"></p>
-<p>在注入傀儡进程的代码逻辑中，有这样一行：</p>
-<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.p1vpi.css"><script type="module" src="/_astro/ec.p1z7b.js"></script><figure class="frame"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#dbd7caee;--1:#393a34">if (WriteProcessMemory (hProcess, v6, avenSign, 9uLL, 0LL))</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="if (WriteProcessMemory (hProcess, v6, avenSign, 9uLL, 0LL))"><div></div></button></div></figure></div>
-</li>
-</ul>
-<p>说明注入后会打烙印，就会存在内存特征。</p>
-<h3 id="第二阶段接力与持续远控">**第二阶段接力与持续远控 **<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to **第二阶段接力与持续远控 **" data-pagefind-ignore="" href="#第二阶段接力与持续远控">#</a></h3>
-<p>一旦系统重启或通过计划任务触发，攻击的第二阶段（备用唤醒/接力链）正式启动 ：</p>
-<ul>
-<li>
-<p><strong>白加黑唤醒：</strong> 系统启动白文件 <code>kitty.exe</code>，该程序随即侧载恶意的 <code>VBoxRT.dll</code> 。</p>
-<p><img alt="image-20260308222751600" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 664px) 664px, 100vw"  data-astro-image="constrained" width="664" height="142" src="/_astro/20260308231626225_YXuCy.webp" srcset="/_astro/20260308231626225_ZSTrdi.webp 640w, /_astro/20260308231626225_YXuCy.webp 664w"></p>
-</li>
-<li>
-<p><strong>持久化控制注入：</strong> <code>VBoxRT.dll</code> 运行后，会从之前建立的注册表项 <code>Software\DeepSer\MyData</code> 中读取隐藏的 shellcode 代码，并将其注入到合法的 Windows 宿主进程 <code>rundll32.exe</code> 中 。</p>
-<p><img alt="image-20260308222802496" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 521px) 521px, 100vw"  data-astro-image="constrained" width="521" height="262" src="/_astro/20260308231626226_Z2hQeqg.webp" srcset="/_astro/20260308231626226_Z2hQeqg.webp 521w"></p>
-</li>
-<li>
-<p><strong>守护进程机制：</strong> 为防止单点清理导致持久化链条断裂，恶意模块 blackdll.dll 运行后构建了一套动态恢复机制。它负责提取 OpenAi_Service 中隐藏的宿主路径，并死守系统的 Run 注册表键值。一旦安全人员清理了启动项，该 DLL 会立刻将其重新写入，两者形成互相依赖的守护闭环，以此对抗杀毒软件和人工的常规清理操作。</p>
-</li>
-</ul>
-<p><img alt="image-20260308222828423" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 464px) 464px, 100vw"  data-astro-image="constrained" width="464" height="272" src="/_astro/20260308231626227_Z1ug7cH.webp" srcset="/_astro/20260308231626227_Z1ug7cH.webp 464w"></p>
-<p>打开注册表键写入自启动项</p>
-<p><img alt="image-20260308222901397" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 509px) 509px, 100vw"  data-astro-image="constrained" width="509" height="392" src="/_astro/20260308231626228_2kGDtz.webp" srcset="/_astro/20260308231626228_2kGDtz.webp 509w"></p>
-<h2 id="附录">附录<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 附录" data-pagefind-ignore="" href="#附录">#</a></h2>
-<h3 id="银狐木马-mitre-attck-ttps-映射表">银狐木马 MITRE ATT&#x26;CK TTPs 映射表<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 银狐木马 MITRE ATT&#x26;CK TTPs 映射表" data-pagefind-ignore="" href="#银狐木马-mitre-attck-ttps-映射表">#</a></h3>
+<h3 id="46-jlidll线程劫持与傀儡-explorerexe">4.6 <code>jli.dll</code>线程劫持与傀儡 <code>explorer.exe</code><a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 4.6 jli.dll线程劫持与傀儡 explorer.exe" data-pagefind-ignore="" href="#46-jlidll线程劫持与傀儡-explorerexe">#</a></h3>
+<p>注入 <code>explorer.exe</code> 后，可以从内存中 Dump 出 <code>jli.dll</code>。
+<img alt="jli.dll" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 496px) 496px, 100vw"  data-astro-image="constrained" width="496" height="279" src="/_astro/20260308231626223_Z2904tB.webp" srcset="/_astro/20260308231626223_Z2904tB.webp 496w"></p>
+<p>该模块随后启动新的：</p>
+<div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#dbd7caee;--1:#393a34">CommandLine=C:\Windows\explorer.exe</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="CommandLine=C:\Windows\explorer.exe"><div></div></button></div></figure></div>
+<p>并将恶意 Shellcode 写入其中执行。</p>
+<p><img alt="傀儡 explorer.exe" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 511px) 511px, 100vw"  data-astro-image="constrained" width="511" height="337" src="/_astro/20260308231626224_25cKrz.webp" srcset="/_astro/20260308231626224_25cKrz.webp 511w"></p>
+<h3 id="47-第二阶段kittyexe-侧载-vboxrtdll">4.7 第二阶段：<code>kitty.exe</code> 侧载 <code>VBoxRT.dll</code><a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 4.7 第二阶段：kitty.exe 侧载 VBoxRT.dll" data-pagefind-ignore="" href="#47-第二阶段kittyexe-侧载-vboxrtdll">#</a></h3>
+<p>系统重启、登录或计划任务触发后，<code>kitty.exe</code> 启动并侧载 <code>VBoxRT.dll</code>。</p>
+<p><img alt="kitty.exe 侧载 VBoxRT.dll" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 664px) 664px, 100vw"  data-astro-image="constrained" width="664" height="142" src="/_astro/20260308231626225_YXuCy.webp" srcset="/_astro/20260308231626225_ZSTrdi.webp 640w, /_astro/20260308231626225_YXuCy.webp 664w"></p>
+<p><code>VBoxRT.dll</code> 从 <code>Software\DeepSer\MyData</code> 读取隐藏 Shellcode，并注入<code>rundll32.exe</code>。</p>
+<p><img alt="VBoxRT.dll 注入 rundll32.exe" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 521px) 521px, 100vw"  data-astro-image="constrained" width="521" height="262" src="/_astro/20260308231626226_Z2hQeqg.webp" srcset="/_astro/20260308231626226_Z2hQeqg.webp 521w"></p>
+<p><code>blackdll.dll</code> 负责守护启动项，如果 <code>Run\bfly</code> 被删除，会尝试重新写入，构成持久化修复链。
+<img alt="blackdll.dll 守护" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 464px) 464px, 100vw"  data-astro-image="constrained" width="464" height="272" src="/_astro/20260308231626227_Z1ug7cH.webp" srcset="/_astro/20260308231626227_Z1ug7cH.webp 464w"></p>
+<p><img alt="恢复启动项" loading="lazy" decoding="async" fetchpriority="auto" sizes="(min-width: 509px) 509px, 100vw"  data-astro-image="constrained" width="509" height="392" src="/_astro/20260308231626228_2kGDtz.webp" srcset="/_astro/20260308231626228_2kGDtz.webp 509w"></p>
+<h2 id="mitre-attck-映射">MITRE ATT&#x26;CK 映射<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to MITRE ATT&#x26;CK 映射" data-pagefind-ignore="" href="#mitre-attck-映射">#</a></h2>
 <div>
 
 
@@ -324,7 +459,28 @@ const navHighlight = true;
 
 
 
-<table><thead><tr><th><strong>战术 (Tactic)</strong></th><th><strong>技术编号 (ID)</strong></th><th><strong>技术名称 (Technique)</strong></th><th><strong>样本具体恶意行为映射</strong></th></tr></thead><tbody><tr><td><strong>执行 (Execution)</strong></td><td>T1053.005</td><td>Scheduled Task/Job: Scheduled Task</td><td>读取注册表中的路径后，调用 <code>RegisterScheduledTaskWithPath</code> 函数注册计划任务，以此触发和执行恶意载荷 。</td></tr><tr><td><strong>持久化 (Persistence)</strong></td><td>T1547.001</td><td>Boot or Logon Autostart Execution: Registry Run Keys</td><td>在注册表 <code>Software\Microsoft\Windows\CurrentVersion\Run</code> 路径下写入名为 <code>bfly</code> 的键值，设置白文件 <code>kitty.exe</code> 开机自启动 。</td></tr><tr><td><strong>防御规避 (Defense Evasion)</strong></td><td>T1574.002</td><td>Hijack Execution Flow: DLL Side-Loading</td><td>利用“白加黑”技术，分别通过白文件 <code>Microsoft_Xtools.exe</code> 和 <code>kitty.exe</code> 侧载同目录下的恶意动态库 <code>UnityPlayer.dll</code> 和 <code>VBoxRT.dll</code> 。</td></tr><tr><td><strong>防御规避 (Defense Evasion)</strong></td><td>T1027.001</td><td>Obfuscated Files or Information: Binary Padding</td><td>为恶意文件 <code>UnityPlayer.dll</code> 添加大量垃圾数据进行文件增肥，使其体积膨胀至 209MB，以规避杀毒软件的大文件扫描限制 。</td></tr><tr><td><strong>防御规避 (Defense Evasion)</strong></td><td>T1027.002</td><td>Obfuscated Files or Information: Software Packing</td><td>使用 Themida 保护壳对初始执行的白文件程序 <code>Microsoft_Xtools.exe</code> 进行加壳保护，增加静态分析难度 。</td></tr><tr><td><strong>防御规避 (Defense Evasion)</strong></td><td>T1140</td><td>Deobfuscate/Decode Files or Information</td><td>释放加密压缩包 <code>NOT-UTG-Q-1000.dat</code> 后，在代码中使用明文密码（如“Panzer0”）进行解密，以释放后续武器库 。</td></tr><tr><td><strong>防御规避 (Defense Evasion)</strong></td><td>T1112</td><td>Modify Registry</td><td>在用户特定的注册表路径 <code>HKEY_USERS\...\Software\DeepSer</code> 及其子键（<code>MyData</code>、<code>Onload1</code>、<code>OpenAi_Service</code>）中隐蔽存储各类恶意软件的配置信息和载荷路径 。</td></tr><tr><td><strong>发现 (Discovery)</strong></td><td>T1057</td><td>Process Discovery</td><td>调用 <code>CreateToolhelp32Snapshot</code>、<code>Process32FirstW</code> 等 API 获取系统进程快照，遍历进程内存区域以寻找包含特定字符串 <code>"Ven_sign"</code> 的特征 。</td></tr><tr><td><strong>防御规避 / 权限提升 (Evasion / Privilege)</strong></td><td>T1055</td><td>Process Injection</td><td>解码出 <code>PoolParty.exe</code>，针对 <code>explorer.exe</code> 发起高级的“PoolParty”攻击（利用 Windows 线程池机制进行隐蔽的进程注入）；后续 <code>VBoxRT.dll</code> 还会将 Shellcode 注入到系统合法的 <code>rundll32.exe</code> 中 。</td></tr><tr><td><strong>防御规避 / 权限提升 (Evasion / Privilege)</strong></td><td>T1055.012</td><td>Process Injection: Process Hollowing</td><td>注入到 <code>explorer.exe</code> 后，利用内存中 Dump 出的 <code>jli.dll</code> 模块启动一个新的 <code>explorer.exe</code> 傀儡进程（<code>CommandLine='C:\Windows\explorer.exe'</code>），并将恶意代码写入其中执行 。</td></tr></tbody></table></div>  </article>   <image-viewer data-selector="article" data-options="{&#34;title&#34;:0,&#34;navbar&#34;:0}"></image-viewer> <script type="module" src="/_astro/ImageViewer.astro_astro_type_script_index_0_lang.BbQHAm9u.js"></script>  <!-- Share --> <footer class="slide-enter animate-delay-1000! prose mx-auto mt-8 print:hidden"> <span class="font-mono op-50">&gt; </span> <span class="op-50">share on</span>  <a class="op-60 no-underline hover:op-100 op-50!" href="https://twitter.com/intent/tweet?text=Reading%20%40noknoku07_nok's%20https%3A%2F%2Fnicky.cool%2Fblog%2F%25E9%2593%25B6%25E7%258B%2590%25E5%258F%2598%25E7%25A7%258D%25E6%2596%2587%25E4%25BB%25B6%25E5%25A2%259E%25E8%2582%25A5%25E4%25B8%258E-poolparty-%25E6%25B3%25A8%25E5%2585%25A5%25E7%259A%2584%25E9%25AB%2598%25E7%25BA%25A7%25E6%2594%25BB%25E5%2587%25BB%25E9%2593%25BE%25E8%25B7%25AF%25E5%2589%2596%25E6%259E%2590%2F%0A%0AI%20think..." title="Tweet this post" aria-label="Tweet this post">  twitter</a>  <br> <span class="font-mono op-50">&gt; </span> <a class="op-60 no-underline hover:op-100 font-mono op-50!" href="/blog/">  cd ..</a> </footer> <!-- Comments --> <div class="prose mx-auto mt-8"> <hr> <div class="giscus"></div> <script type="module">const e={giscus:[!0,{"data-repo":"nickyl07/nicky.cool","data-repo-id":"R_kgDOLylKbA","data-category":"Giscus","data-category-id":"DIC_kwDOLylKbM4Cpugn","data-mapping":"title","data-strict":"0","data-reactions-enabled":"1","data-emit-metadata":"0","data-input-position":"bottom","data-lang":"zh-CN"}]},i=`${location.origin}/giscus/light.css`,a=`${location.origin}/giscus/dark.css`,o=Array.isArray(e.giscus)&&e.giscus[1],s=document.createElement("script");Object.entries({...o,id:"giscus-script",src:"https://giscus.app/client.js",crossOrigin:"anonymous",async:""}).forEach(([t,c])=>{s.setAttribute(t,c)});const r=()=>{document.querySelectorAll("iframe.giscus-frame").forEach(t=>t.remove()),document.querySelectorAll("script#giscus-script").forEach(t=>t.remove())},n=()=>{if(!document.querySelector(".giscus"))return;const t=s.cloneNode(!0);t.setAttribute("data-theme",document.documentElement.classList.contains("dark")?a:i),document.body.appendChild(t)};document.addEventListener("astro:before-swap",r);document.addEventListener("astro:page-load",n);</script> </div> </main> <!-- Footer --> <footer class="slide-enter animate-delay-1600! px-7 mt-auto mb-8"> <div class="prose mx-auto op-50"> <div class="flex lt-sm:flex-col items-center text-sm whitespace-nowrap"> <span>© 2026 NickyWU</span> <span class="lt-sm:hidden">&nbsp;|&nbsp;</span> <span>
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>战术</th><th>技术 ID</th><th>技术名称</th><th>样本映射</th></tr></thead><tbody><tr><td>执行</td><td>T1204.002</td><td>用户执行：恶意文件（User Execution: Malicious File）</td><td>用户运行伪装程序 <code>Microsoft_Xtools.exe</code></td></tr><tr><td>执行 / 持久化</td><td>T1053.005</td><td>计划任务（Scheduled Task）</td><td>注册计划任务触发后续载荷</td></tr><tr><td>持久化</td><td>T1547.001</td><td>登录自启动：注册表 Run 键（Registry Run Keys）</td><td>写入 <code>Run\bfly</code> 指向 <code>kitty.exe</code></td></tr><tr><td>防御规避</td><td>T1574.002</td><td>执行流劫持：DLL 侧载（DLL Side-Loading）</td><td><code>Microsoft_Xtools.exe</code> 侧载 <code>UnityPlayer.dll</code>，<code>kitty.exe</code> 侧载 <code>VBoxRT.dll</code></td></tr><tr><td>防御规避</td><td>T1027.001</td><td>二进制填充（Binary Padding）</td><td><code>UnityPlayer.dll</code> 文件增肥至约 209 MB</td></tr><tr><td>防御规避</td><td>T1027.002</td><td>软件加壳（Software Packing）</td><td><code>Microsoft_Xtools.exe</code> 使用 Themida 加壳</td></tr><tr><td>防御规避</td><td>T1140</td><td>解码 / 解密文件或信息（Deobfuscate/Decode Files or Information）</td><td>使用 <code>Panzer0</code> 解包 <code>NOT-UTG-Q-1000.dat</code></td></tr><tr><td>防御规避</td><td>T1112</td><td>修改注册表（Modify Registry）</td><td>创建 <code>Software\DeepSer</code> 并写入 <code>MyData</code>、<code>OpenAi_Service</code>、<code>Onload1</code></td></tr><tr><td>发现</td><td>T1057</td><td>进程发现（Process Discovery）</td><td>创建进程快照并遍历进程</td></tr><tr><td>防御规避 / 执行</td><td>T1055</td><td>进程注入（Process Injection）</td><td>PoolParty 线程池注入 <code>explorer.exe</code>，以及 <code>VBoxRT.dll</code> 注入 <code>rundll32.exe</code></td></tr><tr><td>命令与控制</td><td>T1071</td><td>应用层协议（Application Layer Protocol）</td><td>后续远控通信待从 Shellcode / 网络流量中确认</td></tr><tr><td>命令与控制</td><td>T1105</td><td>工具传入（Ingress Tool Transfer）</td><td>若确认后续从 C2 拉取插件或载荷，可映射</td></tr></tbody></table></div>
+<h2 id="参考来源">参考来源<a class="header-anchor" tab-index="0" aria-hidden="false" aria-label="Link to 参考来源" data-pagefind-ignore="" href="#参考来源">#</a></h2>
+<ul>
+<li><a href="https://www.fortinet.com/blog/threat-research/seo-poisoning-attack-targets-chinese-speaking-users-with-fake-software-sites">Fortinet: SEO Poisoning Attack Targets Chinese-Speaking Users with Fake Software Sites</a></li>
+<li><a href="https://www.rapid7.com/blog/post/2025/05/22/nsis-abuse-and-srdi-shellcode-anatomy-of-the-winos-4-0-campaign/">Rapid7: NSIS Abuse and sRDI Shellcode: Anatomy of the Winos 4.0 Campaign</a></li>
+<li><a href="https://www.cybereason.com/blog/fake-installer-valleyrat?hs_amp=true">Cybereason: Fake Installer: Ultimately, ValleyRAT infection</a></li>
+<li><a href="https://www.safebreach.com/blog/process-injection-using-windows-thread-pools/">SafeBreach: Process Injection Using Windows Thread Pools</a></li>
+<li><a href="https://rayblog.rising.com.cn/2025/01/%E9%93%B6%E7%8B%90%E6%9C%A8%E9%A9%AC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8E%A2%E7%B4%A2%E5%8F%8A%E8%BF%91%E6%9C%9F%E5%9C%A8%E9%87%8E%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/">瑞星：银狐木马服务端探索及近期在野样本分析</a></li>
+<li><a href="https://www.antiy.com/response/SwimSnake_Analysis_202508.html">安天：游蛇投毒攻击分析</a></li>
+</ul>  </article>   <image-viewer data-selector="article" data-options="{&#34;title&#34;:0,&#34;navbar&#34;:0}"></image-viewer> <script type="module" src="/_astro/ImageViewer.astro_astro_type_script_index_0_lang.BbQHAm9u.js"></script>  <!-- Share --> <footer class="slide-enter animate-delay-1000! prose mx-auto mt-8 print:hidden"> <span class="font-mono op-50">&gt; </span> <span class="op-50">share on</span>  <a class="op-60 no-underline hover:op-100 op-50!" href="https://twitter.com/intent/tweet?text=Reading%20%40noknoku07_nok's%20https%3A%2F%2Fnicky.cool%2Fblog%2F%25E9%2593%25B6%25E7%258B%2590%25E5%258F%2598%25E7%25A7%258D%25E6%2596%2587%25E4%25BB%25B6%25E5%25A2%259E%25E8%2582%25A5%25E4%25B8%258E-poolparty-%25E6%25B3%25A8%25E5%2585%25A5%25E7%259A%2584%25E9%25AB%2598%25E7%25BA%25A7%25E6%2594%25BB%25E5%2587%25BB%25E9%2593%25BE%25E8%25B7%25AF%25E5%2589%2596%25E6%259E%2590%2F%0A%0AI%20think..." title="Tweet this post" aria-label="Tweet this post">  twitter</a>  <br> <span class="font-mono op-50">&gt; </span> <a class="op-60 no-underline hover:op-100 font-mono op-50!" href="/blog/">  cd ..</a> </footer> <!-- Comments --> <div class="prose mx-auto mt-8"> <hr> <div class="giscus"></div> <script type="module">const e={giscus:[!0,{"data-repo":"nickyl07/nicky.cool","data-repo-id":"R_kgDOLylKbA","data-category":"Giscus","data-category-id":"DIC_kwDOLylKbM4Cpugn","data-mapping":"title","data-strict":"0","data-reactions-enabled":"1","data-emit-metadata":"0","data-input-position":"bottom","data-lang":"zh-CN"}]},i=`${location.origin}/giscus/light.css`,a=`${location.origin}/giscus/dark.css`,o=Array.isArray(e.giscus)&&e.giscus[1],s=document.createElement("script");Object.entries({...o,id:"giscus-script",src:"https://giscus.app/client.js",crossOrigin:"anonymous",async:""}).forEach(([t,c])=>{s.setAttribute(t,c)});const r=()=>{document.querySelectorAll("iframe.giscus-frame").forEach(t=>t.remove()),document.querySelectorAll("script#giscus-script").forEach(t=>t.remove())},n=()=>{if(!document.querySelector(".giscus"))return;const t=s.cloneNode(!0);t.setAttribute("data-theme",document.documentElement.classList.contains("dark")?a:i),document.body.appendChild(t)};document.addEventListener("astro:before-swap",r);document.addEventListener("astro:page-load",n);</script> </div> </main> <!-- Footer --> <footer class="slide-enter animate-delay-1600! px-7 mt-auto mb-8"> <div class="prose mx-auto op-50"> <div class="flex lt-sm:flex-col items-center text-sm whitespace-nowrap"> <span>© 2026 NickyWU</span> <span class="lt-sm:hidden">&nbsp;|&nbsp;</span> <span>
 Powered by
 <a class="op-60 no-underline hover:op-100 op-100! color-[--fg]!" href="https://github.com/lin-stephanie/astro-antfustyle-theme">  
 Astro AntfuStyle Theme
